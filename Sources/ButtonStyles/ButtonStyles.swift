@@ -69,8 +69,10 @@ public struct ProgressButtonStyle<Background: View>: ButtonStyle {
       .background(background)
       .overlay(
         IfTrue(value: isLoading, content: {
+          #if iOS
           ProgressView()
             .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
+          #endif
         })
       )
   }
@@ -92,7 +94,7 @@ public struct BigButtonStyle: ButtonStyle {
       .font(.title.bold())
       .padding()
       .frame(maxWidth: .infinity, alignment: .center)
-      .foregroundColor(isEnabled ? .white : Color(UIColor.systemGray3))
+      .foregroundColor(isEnabled ? .white : Color.secondary)
       .background(isEnabled ? color : color.opacity(0.3))
       .cornerRadius(8)
       .overlay(
